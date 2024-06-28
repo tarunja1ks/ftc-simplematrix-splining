@@ -14,16 +14,15 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         double xinit=0;
-        double yinit=2;
-        double xfinal=1;
-        double yfinal=4;
-        QSplinePath splinetest=new QSplinePath(xinit,yinit,0,0,xfinal,yfinal,0,0);
-        SimpleMatrix coeff=splinetest.makeSpline();
-        System.out.println(coeff);
+        double yinit=0;
+        double xfinal=3;
+        double yfinal=5;
+        QSplinePath splinex=new QSplinePath(xinit,yinit,0,0,xfinal,yfinal,0,0);
+        SimpleMatrix coeffx=splinex.makeSpline();
         JFrame frame = new JFrame("Polynomial Graph");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.add(new GraphPanel(coeff.get(0),coeff.get(1),coeff.get(2),coeff.get(3),coeff.get(4),coeff.get(5),xinit,xfinal,yinit,yfinal));
+        frame.setSize(2000, 2000);
+        frame.add(new GraphPanel(coeffx.get(0),coeffx.get(1),coeffx.get(2),coeffx.get(3),coeffx.get(4),coeffx.get(5),xinit,xfinal,yinit,yfinal));
         frame.setVisible(true);
     }
 }
