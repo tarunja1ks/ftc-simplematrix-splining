@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import org.ejml.equation.Symbol;
 import org.ejml.simple.SimpleMatrix;
 import  ftc.simplematrix.splining.Vector2;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
@@ -62,6 +63,8 @@ public class App {
         
     }
 }
+
+
 
 
 
