@@ -21,7 +21,7 @@ public class GraphPanel extends JPanel {
     private Image backgroundImage;
     public List<QSplinePath> spline_x;
     public List<QSplinePath> spline_y;
-    public GraphPanel(List<QSplinePath> spline_x, List<QSplinePath> spline_y) {
+    public GraphPanel(List<QSplinePath> spline_x, List<QSplinePath> spline_y) { // adding in the list of spline segments for x and y movement
         this.spline_x=spline_x;
         this.spline_y=spline_y;
         this.backgroundImage = new ImageIcon("src/main/java/ftc/simplematrix/splining/custom-centerstage-field-diagrams-works-with-meepmeep-v0-gytjsw5tfpob1.png").getImage();
@@ -31,12 +31,11 @@ public class GraphPanel extends JPanel {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        // Set background 
         g2d.drawImage(this.backgroundImage, 0, 0, getWidth(), getHeight(), this);
         System.out.println(this.backgroundImage);
         System.out.println( this.backgroundImage.getWidth(this));
-        // Set background color
-        // g2d.setColor(Color.WHITE);
-        // g2d.fillRect(0, 0, getWidth(), getHeight());
+        
 
         // Draw the axes
         g2d.setColor(Color.BLACK);
@@ -66,7 +65,7 @@ public class GraphPanel extends JPanel {
             }
         }
 
-        // Draw the polynomial q(t) = c0 + c1*t + c2*t^2 + c3*t^3 + c4*t^4 + c5*t^5
+        // Looping through each spline segment and graphing it
         
         for(int i=0;i<spline_y.size();i++){
             graphSpline(g2d, spline_x.get(i), spline_y.get(i), xAxis, yAxis, width, height);
@@ -80,7 +79,7 @@ public class GraphPanel extends JPanel {
     }
 
 
-    public void plotPoint(Graphics2D g2d, double x, double y) {
+    public void plotPoint(Graphics2D g2d, double x, double y) { //plotting a point to mark waypoints/start/end and etc
         int xAxis = getHeight() / 2;
         int yAxis = getWidth() / 2;
 
@@ -100,7 +99,7 @@ public class GraphPanel extends JPanel {
         this.c5=splines.getcoeff().get(5);
     }
 
-    public void graphSpline(Graphics2D g2d, QSplinePath spline_x, QSplinePath spline_y, double xAxis, double yAxis, double width, double height){
+    public void graphSpline(Graphics2D g2d, QSplinePath spline_x, QSplinePath spline_y, double xAxis, double yAxis, double width, double height){ // graphing the x/y blended spline
         g2d.setColor(Color.RED);
         double prevX = 0, prevY = 0;
         boolean firstPoint = true;

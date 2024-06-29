@@ -19,6 +19,7 @@ public class App {
         List<QSplinePath>spline_xs= new ArrayList<QSplinePath>();
         List<QSplinePath>spline_ys= new ArrayList<QSplinePath>();
         
+        // spline constructor format is the initial time,position,velocity,acceleration then final time, position, velocity, acceleration
 
         // X splines
         QSplinePath splinex=new QSplinePath(0,-24,0,0,2,-7,4,2);
