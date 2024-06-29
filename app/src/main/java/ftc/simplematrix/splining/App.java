@@ -15,37 +15,46 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
         List<QSplinePath>spline_xs= new ArrayList<QSplinePath>();
         List<QSplinePath>spline_ys= new ArrayList<QSplinePath>();
         
 
         // X splines
-        QSplinePath splinex=new QSplinePath(0,-24,0,0,4,-7,4,0);
+        QSplinePath splinex=new QSplinePath(0,-24,0,0,2,-7,4,2);
         splinex.makeSpline();
-        System.out.println(splinex.getcoeff());
-        QSplinePath splinex2=new QSplinePath(4, -7, 4, 0, 7, -36, 0, 0);
+
+        QSplinePath splinex3=new QSplinePath(2,-7,4,0,3,-12,-3,4); 
+        splinex3.makeSpline();
+
+        QSplinePath splinex2=new QSplinePath(3, -12, -7, 0, 4, -36, 0, 0);
         splinex2.makeSpline();
 
 
         // y splines
-        QSplinePath spliney=new QSplinePath(0,-55,0,0,4,0,7,0);
+        QSplinePath spliney=new QSplinePath(0,-55,0,0,2,0,8.42,0);
         spliney.makeSpline();
-        QSplinePath spliney2=new QSplinePath(4,0,7,0,7,48,0,0);
+
+        QSplinePath spliney3=new QSplinePath(2,0,8.42,0,3,24,8.42,0);
+        spliney3.makeSpline();
+
+
+        QSplinePath spliney2=new QSplinePath(3,24,8.42,0,4,48,0,0);
         spliney2.makeSpline();
 
 
         // adding the splines to the arraylist
         spline_xs.add(splinex);
+        spline_xs.add(splinex3);
         spline_xs.add(splinex2);
+
         spline_ys.add(spliney);
+        spline_ys.add(spliney3);
         spline_ys.add(spliney2);
 
         JFrame frame = new JFrame("Polynomial Graph");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2000, 2000);
         frame.add(new GraphPanel(spline_xs,spline_ys));
-        // frame.add(new GraphPanel(splinex2, spliney2));
         frame.setVisible(true);
 
 
@@ -59,88 +68,3 @@ public class App {
 
 
 
-class QSplinePath {
-    public static SimpleMatrix TCoeff; // The coeffecients for all of the polynomials
-    public static SimpleMatrix IF;// Initial and Final
-    public  SimpleMatrix Coeff;
-    public double t0, tf;
-    public double q0,qf;
-    public QSplinePath(double t0, double q0, double v0, double a0, double tf, double qf, double vf, double af){// initial time, initial poisiton, initial velocity, initial accel, final time, final position, final velcity, final accel
-        double[][]tcoeff= new double[6][6];
-        for(int j = 0; j<6; j++){
-            tcoeff[0][j]=Q(t0)[j];
-        }
-        for(int j = 0; j<6; j++){
-            tcoeff[1][j]=Qprime(t0)[j];
-        }
-        for(int j = 0; j<6; j++){
-            tcoeff[2][j]=Qdoubleprime(t0)[j];
-        }
-        for(int j = 0; j<6; j++){
-            tcoeff[3][j]=Q(tf)[j];
-        }
-        for(int j = 0; j<6; j++){
-            tcoeff[4][j]=Qprime(tf)[j];
-        }
-        for(int j = 0; j<6; j++){
-            tcoeff[5][j]=Qdoubleprime(tf)[j];
-        }
-        TCoeff=new SimpleMatrix(tcoeff);
-        IF=new SimpleMatrix(new double[]{q0,v0,a0,qf,vf,af});
-        this.t0=t0;
-        this.tf=tf;
-        this.q0=q0;
-        this.qf=qf;
-    }
-
-    /**
-     * Returns the x and y value for some value of t (plugs in a value into our function)
-     * @param t The t-value to plug in
-     * @return An x and y value.
-     */
-
-    public double[] getTimes(){
-        return (new double[]{t0,tf});
-    }
-    public Vector2 getPoint(double t) {
-        double x =1 ;
-        double y = 1;
-        return new Vector2(x, y);
-    }
-
-    /**
-     * Generates an array that has some points, equally spaced, along the function.
-     * @param points The length of the array.
-     * @return An array of points.
-     */
-    public Vector2[] generateArr(int points) {
-        // assuming that the spline goes from t=0 to t=1, this should be the step
-        // idk if this is right though
-        Vector2[] retVal = new Vector2[points];
-        double step = 1 / (double) points;
-        for (int i = 0; i < points; i++) {
-            retVal[i] = this.getPoint(step * i);
-        }
-        return retVal;
-    }
-
-    public static double[] Q(double t){
-        return new double[]{1,t,t*t,t*t*t,t*t*t*t,t*t*t*t*t};// math.pow is for nerds
-    }
-    public static double[] Qprime(double t){
-        return new double[]{0,1,2*t,3*t*t,4*t*t*t,5*t*t*t*t};
-    }
-
-    public static double[] Qdoubleprime(double t){
-        return new double[]{0,0,2,6*t,12*t*t,20*t*t*t};
-    }
-
-    public SimpleMatrix makeSpline(){
-        Coeff=(TCoeff.invert()).mult(IF);
-        return Coeff;
-    }
-
-    public SimpleMatrix getcoeff(){
-        return Coeff;
-    }
-}

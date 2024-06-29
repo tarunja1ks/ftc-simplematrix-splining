@@ -75,45 +75,7 @@ public class GraphPanel extends JPanel {
         }
 
 
-        // g2d.setColor(Color.BLACK);
-        // prevX = 0; prevY = 0;
-        // firstPoint = true;
-        // for (double t = 0; t <= 20000; t += 0.1) {
-        //     double xpos = t;
-        //     updatecoeffecientsplines(spline_y);
-        //     double ypos = c0 + c1 * t + c2 * Math.pow(t, 2) + c3 * Math.pow(t, 3) + c4 * Math.pow(t, 4) + c5 * Math.pow(t, 5);
-        //     double scaledX = yAxis + xpos * (width / 144.0);
-        //     double scaledY = xAxis - ypos * (height / 144.0);
-
-        //     if (firstPoint) {
-        //         firstPoint = false;
-        //     } else {
-        //         g2d.drawLine((int) prevX, (int) prevY, (int) scaledX, (int) scaledY);
-        //     }
-
-        //     prevX = scaledX;
-        //     prevY = scaledY;
-        // }
-        // g2d.setColor(Color.GREEN);
-        // prevX = 0; prevY = 0;
-        // firstPoint = true;
-        // for (double t = 0; t <= 20000; t += 0.1) {
-        //     double xpos = t;
-        //     updatecoeffecientsplines(spline_x);
-        //     double ypos = c0 + c1 * t + c2 * Math.pow(t, 2) + c3 * Math.pow(t, 3) + c4 * Math.pow(t, 4) + c5 * Math.pow(t, 5);
-        //     double scaledX = yAxis + xpos * (width / 144.0);
-        //     double scaledY = xAxis - ypos * (height / 144.0);
-
-        //     if (firstPoint) {
-        //         firstPoint = false;
-        //     } else {
-        //         g2d.drawLine((int) prevX, (int) prevY, (int) scaledX, (int) scaledY);
-        //     }
-
-        //     prevX = scaledX;
-        //     prevY = scaledY;
-        // }
-
+        
        
     }
 
