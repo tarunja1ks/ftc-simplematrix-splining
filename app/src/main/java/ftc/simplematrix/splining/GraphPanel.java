@@ -91,13 +91,13 @@ public class GraphPanel extends JPanel {
         g2d.fillOval((int) scaledX - 5, (int) scaledY - 5, 10, 10); // Draw a small circle at the point
     }
 
-    public void updatecoeffecientsplines(QSplinePath awesomepantssplines){ //updating c1 to 5 to the spline assigned so that way i dont call it each time and its not annoying and poopy
-        this.c0=awesomepantssplines.getcoeff().get(0);
-        this.c1=awesomepantssplines.getcoeff().get(1);
-        this.c2=awesomepantssplines.getcoeff().get(2);
-        this.c3=awesomepantssplines.getcoeff().get(3);
-        this.c4=awesomepantssplines.getcoeff().get(4);
-        this.c5=awesomepantssplines.getcoeff().get(5);
+    public void updatecoeffecientsplines(QSplinePath splines){ //updating c1 to 5 to the spline assigned so that way i dont call it each time and its not annoying and poopy
+        this.c0=splines.getcoeff().get(0);
+        this.c1=splines.getcoeff().get(1);
+        this.c2=splines.getcoeff().get(2);
+        this.c3=splines.getcoeff().get(3);
+        this.c4=splines.getcoeff().get(4);
+        this.c5=splines.getcoeff().get(5);
     }
 
     public void graphSpline(Graphics2D g2d, QSplinePath spline_x, QSplinePath spline_y, double xAxis, double yAxis, double width, double height){
