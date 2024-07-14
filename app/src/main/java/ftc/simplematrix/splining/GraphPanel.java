@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 import org.ejml.equation.Symbol;
 
+import ftc.simplematrix.splining.math.Pose2d;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
@@ -21,10 +23,22 @@ public class GraphPanel extends JPanel {
     private Image backgroundImage;
     public List<QSplinePath> spline_x;
     public List<QSplinePath> spline_y;
+
+    public SimulatedRobot simulatedRobot;
+    public int robotSize = 50;
+
     public GraphPanel(List<QSplinePath> spline_x, List<QSplinePath> spline_y) { // adding in the list of spline segments for x and y movement
         this.spline_x=spline_x;
         this.spline_y=spline_y;
         this.backgroundImage = new ImageIcon("src/main/java/ftc/simplematrix/splining/custom-centerstage-field-diagrams-works-with-meepmeep-v0-gytjsw5tfpob1.png").getImage();
+        
+        double startingX = spline_x.get(0).q0;
+        double startingY = spline_y.get(0).q0;
+        simulatedRobot = new SimulatedRobot(new Pose2d(
+            startingX,
+            startingY,
+            Math.atan2(startingY, startingX)
+        ));
     }
 
     @Override
@@ -74,6 +88,12 @@ public class GraphPanel extends JPanel {
         }
 
 
+        // Draw the robot as a square
+        g2d.setColor(Color.BLUE);
+        double scaledRobotX = yAxis + simulatedRobot.position.x * (width / 144.0);
+        double scaledRobotY = xAxis - simulatedRobot.position.y * (height / 144.0);
+        g2d.fillRect((int) scaledRobotX - robotSize / 2, (int) scaledRobotY - robotSize / 2, robotSize, robotSize);
+        
         
        
     }
@@ -119,6 +139,23 @@ public class GraphPanel extends JPanel {
 
                 prevX = scaledX;
                 prevY = scaledY;
+        }
+    }
+
+    public void updateRobotPosition(double t) {
+        for (int i = 0; i < spline_x.size(); i++) {
+            if (t >= spline_x.get(i).getTimes()[0] && t <= spline_x.get(i).getTimes()[1]) {
+                updatecoeffecientsplines(spline_x.get(i));
+                double robotX = c0 + c1 * t + c2 * Math.pow(t, 2) + c3 * Math.pow(t, 3) + c4 * Math.pow(t, 4) + c5 * Math.pow(t, 5);
+                updatecoeffecientsplines(spline_y.get(i));
+                double robotY = c0 + c1 * t + c2 * Math.pow(t, 2) + c3 * Math.pow(t, 3) + c4 * Math.pow(t, 4) + c5 * Math.pow(t, 5);
+                this.simulatedRobot.move(
+                    new Vector2(robotX-simulatedRobot.position.x, robotY-simulatedRobot.position.y), 
+                    Math.atan2(robotY, robotX)-simulatedRobot.position.heading
+                );
+                
+                break;
+            }
         }
     }
 }
