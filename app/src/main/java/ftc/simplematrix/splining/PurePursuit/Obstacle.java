@@ -1,4 +1,4 @@
-package ftc.simplematrix.splining;
+package ftc.simplematrix.splining.PurePursuit;
 
 import ftc.simplematrix.splining.math.Pose2d;
 

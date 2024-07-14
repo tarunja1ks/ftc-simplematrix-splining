@@ -6,7 +6,6 @@ import static ftc.simplematrix.splining.math.Algebra.sign;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import ftc.simplematrix.splining.Vector2;
 
 public class Geometry {
     /**

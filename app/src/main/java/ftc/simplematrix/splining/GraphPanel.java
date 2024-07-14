@@ -9,7 +9,10 @@ import javax.swing.JPanel;
 
 import org.ejml.equation.Symbol;
 
+import ftc.simplematrix.splining.Qsplines.QSplinePath;
+import ftc.simplematrix.splining.Robot.SimulatedRobot;
 import ftc.simplematrix.splining.math.Pose2d;
+import ftc.simplematrix.splining.math.Vector2;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

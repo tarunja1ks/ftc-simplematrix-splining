@@ -1,4 +1,6 @@
-package ftc.simplematrix.splining;
+package ftc.simplematrix.splining.Robot;
+
+import ftc.simplematrix.splining.math.Vector2;
 
 public interface Drivetrain {
     /**

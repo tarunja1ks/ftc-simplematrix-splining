@@ -2,8 +2,6 @@ package ftc.simplematrix.splining.math;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import ftc.simplematrix.splining.Vector2;
-
 public class Pose2d {
     public double x;
     public double y;

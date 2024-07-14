@@ -1,4 +1,4 @@
-package ftc.simplematrix.splining;
+package ftc.simplematrix.splining.math;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 

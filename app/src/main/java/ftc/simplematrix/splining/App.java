@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Timer;
+
+import ftc.simplematrix.splining.Qsplines.QSplinePath;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;

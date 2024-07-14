@@ -3,9 +3,16 @@ package ftc.simplematrix.splining.PurePursuit;
 
 import java.util.function.Supplier;
 
-import javax.annotation.Nonnull;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
+import static ftc.simplematrix.splining.math.Geometry.circleLineIntersection;
+import static ftc.simplematrix.splining.math.Geometry.distToPoint;
 
 import ftc.simplematrix.splining.Qsplines.QSplinePath;
+import ftc.simplematrix.splining.Robot.Drivetrain;
+import ftc.simplematrix.splining.math.Angle;
+import ftc.simplematrix.splining.math.Pose2d;
+import ftc.simplematrix.splining.math.Vector2;
 
 /**
  * A class which is used to follow paths using the Pure Pursuit algorithm.
@@ -82,11 +89,11 @@ public class PurePursuitController extends PathFollower {
         if (goalAngle < 0) { goalAngle += 2*Math.PI; }
         double angularErr = Angle.optimize(goalAngle - currentPos.heading);
         drivetrain.move(
-                new Vector2(
-                        goalPoint.x - currentPos.x,
-                        goalPoint.y - currentPos.y
-                ),
-                angularErr
+            new Vector2(
+                    goalPoint.x - currentPos.x,
+                    goalPoint.y - currentPos.y
+            ),
+            angularErr
         );
     }
 
@@ -122,6 +129,5 @@ public class PurePursuitController extends PathFollower {
         return goalPoint;
 
     }
-
 
 }

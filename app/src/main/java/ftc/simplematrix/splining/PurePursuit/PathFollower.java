@@ -3,17 +3,20 @@ package ftc.simplematrix.splining.PurePursuit;
 
 import java.util.function.Supplier;
 
-import javax.annotation.Nonnull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import ftc.simplematrix.splining.Qsplines.QSplinePath;
+import ftc.simplematrix.splining.Robot.Drivetrain;
+import ftc.simplematrix.splining.math.Pose2d;
+import ftc.simplematrix.splining.math.Vector2;
 
 abstract class PathFollower {
     QSplinePath path;
-    // Drivetrain drivetrain;
+    Drivetrain drivetrain;
 
-    // public void setDrivetrain(@NonNull Drivetrain drivetrain) {
-    //     // this.drivetrain = drivetrain;
-    // }
+    public void setDrivetrain(@NonNull Drivetrain drivetrain) {
+        // this.drivetrain = drivetrain;
+    }
 
     /**
      * Sets the path to follow

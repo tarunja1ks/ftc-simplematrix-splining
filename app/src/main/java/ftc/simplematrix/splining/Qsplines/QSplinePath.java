@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import org.ejml.equation.Symbol;
 import org.ejml.simple.SimpleMatrix;
 
-import ftc.simplematrix.splining.Qsplines.Vector2;
+import ftc.simplematrix.splining.math.Vector2;
 public class QSplinePath {
     public static SimpleMatrix TCoeff; // The coeffecients for all of the polynomials
     public static SimpleMatrix IF;// Initial and Final
